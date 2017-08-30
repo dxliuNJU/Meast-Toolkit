@@ -6,12 +6,12 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.jgrapht.graph.SimpleGraph;
 
@@ -30,9 +30,9 @@ public class Step1_ExampleTriplePreprocessor {
 	public static void main(String[] args) throws IOException {
 		List<String> allLine = Files.readAllLines(Paths.get("example/ExampleTriples"), Charset.defaultCharset());
 		
-		Set<String> types = new HashSet<>();
-		Set<String> properties = new HashSet<>();
-		Set<String> entities = new HashSet<>();
+		Set<String> types = new TreeSet<>();
+		Set<String> properties = new TreeSet<>();
+		Set<String> entities = new TreeSet<>();
 		
 		for(String line:allLine){
 			String[] triple = line.split(",");	
@@ -60,7 +60,7 @@ public class Step1_ExampleTriplePreprocessor {
 		typeRange = vocabularies.size()-1;
 		System.out.println(propertiesRange+','+entitiesRange+','+typesRange);
 		
-		Map<String,Integer> dictionary = new HashMap<>();
+		Map<String,Integer> dictionary = new TreeMap<>();
 		for(int i = 0,len = vocabularies.size();i<len;i++){
 			dictionary.put(vocabularies.get(i), i);
 		}

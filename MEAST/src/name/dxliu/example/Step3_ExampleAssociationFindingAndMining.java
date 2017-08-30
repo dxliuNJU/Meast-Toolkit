@@ -5,9 +5,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.jgrapht.graph.DirectedMultigraph;
 
@@ -53,11 +53,13 @@ public class Step3_ExampleAssociationFindingAndMining {
 		GraphAgent graphAgent = new ExampleGraphAgent(graph);
 		OracleAgent oracleAgent = new ExampleOracleAgent();
 		
+		 Map<String,Integer> dictionary = readDictionary();
+		
 		//Association finding.    
 		List<Integer> queryEntities = new ArrayList<>();
-		queryEntities.add(8);   //  8-Alice
-		queryEntities.add(12);  // 12-Bob 
-		queryEntities.add(16);  // 17-Chris		
+		queryEntities.add(dictionary.get("Alice"));   //  7-Alice
+		queryEntities.add(dictionary.get("Bob"));  // 8-Bob 
+		queryEntities.add(dictionary.get("Chris"));  // 9-Chris		
 		int diameter = 4;
 		
 		List<AssociationTree> associations = finder.discovery(graphAgent, oracleAgent, diameter, queryEntities);
@@ -84,7 +86,7 @@ public class Step3_ExampleAssociationFindingAndMining {
 	 */
 	
 	private static Map<Integer, List<Integer>> readExampleTypeStatements() throws IOException {
-		Map<Integer, List<Integer>> typeStatements = new HashMap<>();
+		Map<Integer, List<Integer>> typeStatements = new TreeMap<>();
 		List<String> allLine = Files.readAllLines(Paths.get("example/out_id_type_triples"), Charset.defaultCharset());
 		for(String line : allLine){
 			String[] spo = line.split(" ");
@@ -100,5 +102,19 @@ public class Step3_ExampleAssociationFindingAndMining {
 		}	
 		return typeStatements;
 	}
+	
+	private static Map<String,Integer> readDictionary() throws IOException {
+		 Map<String,Integer> dictionary = new TreeMap<>();
+		List<String> allLine = Files.readAllLines(Paths.get("example/out_dict"), Charset.defaultCharset());
+		for(String line : allLine){
+			String[] spo = line.split(",");
+			Integer id = Integer.valueOf(spo[0]);
+			String uri = spo[1];
+			dictionary.put(uri, id);
+		}	
+		return dictionary;
+	}
+	
+	
 	
 }

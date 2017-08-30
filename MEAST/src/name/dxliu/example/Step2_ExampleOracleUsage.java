@@ -24,8 +24,8 @@ public class Step2_ExampleOracleUsage {
 		oracle.LoadIndex("example/oracle");
 		
 		//query
-		// 8 for Alice and 12 for Bob in example graph.
-		int distance  = oracle.Query(8, 12);
+		// 7 for Alice and 8 for Bob in example graph.
+		int distance  = oracle.Query(7, 8);
 		System.out.println("distance:"+distance);
 
 		
