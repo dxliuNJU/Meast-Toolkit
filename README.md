@@ -5,6 +5,6 @@
 /example/ExampleTriples is the source data of the example.</br>
 /meast.jar the runnable jar file. To run the example correctly, you have to put the example folder in the current working directory. 
 </br></br>
-To running a completed progress, you may wish to run </br>'java -cp meast.jar name.dxliu.exapmle.Step1_ExampleTriplePreprocessor'</br> for
-the preprocessing and run </br>'java -cp meast.jar name.dxliu.exapmle.Step2_ExampleOracleUsage'</br> to construct distance oracle.Then </br>'java -cp meast.jar name.dxliu.exapmle.Step3_ExampleAssociationFindingAndMining'</br>
+To running a completed progress, you may wish to run </br>'java -cp meast.jar name.dxliu.example.Step1_ExampleTriplePreprocessor'</br> for
+the preprocessing and run </br>'java -cp meast.jar name.dxliu.example.Step2_ExampleOracleUsage'</br> to construct distance oracle.Then </br>'java -cp meast.jar name.dxliu.example.Step3_ExampleAssociationFindingAndMining'</br>
 is how to query the relation between Alice,Bob and Chris in the example graph.
